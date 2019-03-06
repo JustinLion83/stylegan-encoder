@@ -31,7 +31,10 @@ if __name__ == "__main__":
     for img_name in os.listdir(RAW_IMAGES_DIR):
         raw_img_path = os.path.join(RAW_IMAGES_DIR, img_name)
         for i, face_landmarks in enumerate(landmarks_detector.get_landmarks(raw_img_path), start=1):
-            face_img_name = '%s_%02d.png' % (os.path.splitext(img_name)[0], i)
+            face_img_name = '%s_aligned.png' % (os.path.splitext(img_name)[0])
+            #check if face image already exists - if so continue
             aligned_face_path = os.path.join(ALIGNED_IMAGES_DIR, face_img_name)
-
+            if os.path.isfile(aligned_face_path):
+                print('File already exists:', aligned_face_path)
+                continue
             image_align(raw_img_path, aligned_face_path, face_landmarks)
