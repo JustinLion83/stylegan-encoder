@@ -37,4 +37,5 @@ if __name__ == "__main__":
             if os.path.isfile(aligned_face_path):
                 print('File already exists:', aligned_face_path)
                 continue
+            print(raw_img_path, aligned_face_path, face_landmarks)
             image_align(raw_img_path, aligned_face_path, face_landmarks)
